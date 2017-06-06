@@ -8,33 +8,66 @@
 
 #include "bag.h"
 #include <iostream>
-#include <boost/optional/optional_io.hpp>
+#include <string>
+
+void ClearScreen()
+{
+	cout << string(100, '\n');
+}
+
 
 using namespace std;
 
-int main() {
+int main()
+{
 	Bag mybag;
 
-	cout << "***Test 1: Adding to the bag***\n";
-	cout << "-------------------------------\n";
-	bool test_1a = mybag.add(2);
-	bool test_1b = mybag.add(5);
-	bool test_1c = mybag.add(2);
-	cout << "Added 2? " << test_1a << "\n";
-	cout << "Added 5? " << test_1b << "\n";
-	cout << "Added 2? " << test_1c << "\n";
-
+	cout << "Bag Manipulation Tests\n";
+	cout << "----------------------\n";
+	cout << "\nAdding 2: ";
+	mybag.add(2);
+	cout << "\n";
+	cout << "\nAdding 5: ";
+	mybag.add(5);
+	cout << "\n";
+	cout << "\nAdding 2: ";
+	mybag.add(2);
+	cout << "\n";
+	cout << "\nAdding 2: ";
+	mybag.add(2);
+	cout << "\n";
+	cout << "\nAdding 5: ";
+	mybag.add(5);
 	cout << "\n";
 
-	cout << "***Test 2: Searching the bag***\n";
-	cout << "-------------------- ----------\n";
-	boost::optional<int> test_2a = mybag.find(2);
-	boost::optional<int> test_2b = mybag.find(5);
-	boost::optional<int> test_2c = mybag.find(9);
-	cout << "Found 2? " << test_2a << "\n";
-	cout << "Found 5? " << test_2b << "\n";
-	cout << "Found 9? " << test_2c << "\n";
+	int outcome;
 
+	cout << "\nRemoving 5: ";
+	outcome = mybag.remove(5);
+	cout << "\nOutcome: " << outcome;
+	cout << "\n";
+	cout << "\nRemoving 9: ";
+	outcome = mybag.remove(9);
+	cout << "\nOutcome: " << outcome;
+	cout << "\n";
+
+	cout << "\nFinding 2: ";
+	outcome = mybag.find(2);
+	cout << "\nOutcome: " << outcome;
+	cout << "\n";
+	cout << "\nFinding 5: ";
+	outcome = mybag.find(5);
+	cout << "\nOutcome: " << outcome;
+	cout << "\n";
+
+	vector<int> myvec;
+
+	cout << "\nFinding all 2s: ";
+	myvec = mybag.findAll(2);
+	cout << "\n";
+	for (auto it = myvec.begin(); it != myvec.end(); ++it) {
+		cout << " " << *it;
+	}
 
 	return 0;
 }

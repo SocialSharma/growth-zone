@@ -13,7 +13,6 @@
 #include <unordered_set>
 #include <utility>
 #include <boost/functional/hash.hpp>
-#include <boost/optional.hpp>
 using namespace std;
 
 class Bag
@@ -22,14 +21,16 @@ public:
 	Bag();
 
 	bool add(int elem);
-	boost::optional<int> remove(int elem);
-	boost::optional<int> find(int elem);
+	int remove(int elem);
+	int find(int elem);
 	vector<int> findAll(int elem);
 
 private:
-	boost::optional<int> null;
-	pair<boost::optional<int>, boost::optional<int> > pairFind(int elem);
+	int f_value, f_count;
 	unordered_set<pair<int, int>, boost::hash<pair<int, int> > > myset;
+
+	void finder(int elem, bool add, bool remove);
+	void debug_out();
 };
 
 #endif /* BAG_H_ */
