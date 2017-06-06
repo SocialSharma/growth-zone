@@ -16,11 +16,7 @@
  */
 
 #include "bag.h"
-#include <unordered_set>
-#include <vector>
-#include <boost/functional/hash.hpp>
-#include <boost/optional.hpp>
-#include <utility>
+
 using namespace std;
 
 Bag::Bag() {}
@@ -46,7 +42,7 @@ pair<boost::optional<int>, boost::optional<int> > Bag::pairFind(int elem)
 
 boost::optional<int> Bag::find(int elem)
 {
-	return pairFind(elem).first;
+	return *(pairFind(elem).first);
 }
 
 vector<int> Bag::findAll(int elem)
@@ -54,7 +50,7 @@ vector<int> Bag::findAll(int elem)
 	// check to see if an element is part of the set, and return element times
 	// it's value (aka number of duplicates) in a vector, or NULL
 
-	int count = pairFind(elem).second;
+	boost::optional<int> count = pairFind(elem).second;
 	vector<int> myvec;
 
 	if (count > 0) {
@@ -73,10 +69,12 @@ bool Bag::add(int elem)
 	// check to see if an element is already a part of the set, add
 	// (element, 1) it if it isn't, and increment its value if it is
 
-	int count = pairFind(elem).second;
+	boost::optional<int> count = pairFind(elem).second;
 
 	if (count > 0) {
-		pairFind(elem).second++;
+		int counter = *(pairFind(elem).second);
+		counter++;
+		pairFind(elem).second = counter;
 		return true;
 	} else {
 		myset.insert(make_pair(elem, 1));
@@ -95,10 +93,13 @@ boost::optional<int> Bag::remove(int elem)
 	boost::optional<int> value = pairFind(elem).first;
 
 	if (count > 1) {
-		(pairFind(elem).second)--;
+		int counter = *(pairFind(elem).second);
+		counter--;
+		pairFind(elem).second = counter;
 		return value;
 	} else if (count == 1) {
-		myset.erase(make_pair(value, null));
+		pair<int, int> gone = make_pair(elem, 0);
+		myset.erase(gone);
 		return value;
 	} else {
 		return null;

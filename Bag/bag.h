@@ -10,7 +10,9 @@
 #define BAG_H_
 
 #include <vector>
+#include <unordered_set>
 #include <utility>
+#include <boost/functional/hash.hpp>
 #include <boost/optional.hpp>
 using namespace std;
 
