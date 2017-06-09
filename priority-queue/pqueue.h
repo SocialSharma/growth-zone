@@ -27,7 +27,7 @@ protected:
 	class Node
 	{
 	public:
-		Node(int x) {
+		Node(int x = 0) {
 			data = x;
 			next = NULL;
 		};
@@ -38,7 +38,6 @@ protected:
 
 	int n; // size of PQueue
 	Node *head;
-	Node *tail;
 };
 
 #endif /* PQUEUE_H_ */

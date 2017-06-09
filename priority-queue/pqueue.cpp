@@ -10,34 +10,47 @@
 
 PQueue::PQueue() {
 	n = 0;
-	head = tail = NULL;
+	head = NULL;
 }
 
-PQueue::~PQueue() {} // TODO: Implement destructor
+PQueue::~PQueue() {
+	Node *t_node = head;
+	while (t_node != NULL) {
+		head = head->next;
+		delete t_node;
+		t_node = head;
+	}
+}
 
 bool PQueue::add(int x) {
-	// use temporary pointer to traverse the list
-	// while the next node's data is smaller than current element, keep going
-	// have current element point to next node
-	// have current node point to element
-	// if you reach the end:
-	//     have current element point to NULL
-	//     have current node point to element
-	// increment size
+	Node n_node = new Node(x);
+	if (n == 0) {head = n_node;}
+
+	Node *t_node = head;
+	while (n_node.data > t_node->next->data) {
+		if (t_node->next == NULL) {break;}
+		t_node = t_node->next;
+	}
+
+	n_node.next = t_node->next;
+	t_node->next = n_node;
+	n++;
+
 	return true;
 }
 
 int PQueue::deleteMin() {
-	// use temporary pointer to keep track of first element
-	// use temporary int to track first element.data
-	// have head point to element.next
-	// delete temp pointer
-	// decrement size
-	// return temp data
-	return 0;
+	if (n == 0) {return NULL;}
+
+	Node *t_node = head;
+	int t_data = head->data;
+	head = head->next;
+	delete t_node;
+	n--;
+
+	return t_data;
 }
 
 int PQueue::size() {
-	// return size of pqueue
 	return n;
 }
