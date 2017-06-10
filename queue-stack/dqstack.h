@@ -39,7 +39,7 @@ protected:
 		queue *off; // pointer to inactive queue
 	};
 
-	void resize(queue q);
+	void resize(queue nofit);
 	queue *on; // pointer to active queue
 };
 
