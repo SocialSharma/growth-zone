@@ -22,21 +22,19 @@ PQueue::~PQueue() {
 	}
 }
 
-bool PQueue::add(int x) {
-	Node n_node = new Node(x);
+void PQueue::add(int x) {
+	Node *n_node = new Node(x);
 	if (n == 0) {head = n_node;}
 
 	Node *t_node = head;
-	while (n_node.data > t_node->next->data) {
+	while (n_node->data > t_node->next->data) {
 		if (t_node->next == NULL) {break;}
 		t_node = t_node->next;
 	}
 
-	n_node.next = t_node->next;
+	n_node->next = t_node->next;
 	t_node->next = n_node;
 	n++;
-
-	return true;
 }
 
 int PQueue::deleteMin() {

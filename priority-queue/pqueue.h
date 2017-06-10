@@ -19,7 +19,7 @@ public:
 	PQueue();
 	virtual ~PQueue();
 
-	bool add(int x);
+	void add(int x);
 	int deleteMin();
 	int size();
 
@@ -27,7 +27,7 @@ protected:
 	class Node
 	{
 	public:
-		Node(int x = 0) {
+		Node(int x) {
 			data = x;
 			next = NULL;
 		};
