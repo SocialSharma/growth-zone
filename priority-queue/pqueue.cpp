@@ -8,12 +8,16 @@
 
 #include "pqueue.h"
 
-PQueue::PQueue() {
+// TODO: raise error if anything but a positive integer is given
+
+PQueue::PQueue()
+{
 	n = 0;
 	head = NULL;
 }
 
-PQueue::~PQueue() {
+PQueue::~PQueue()
+{
 	Node *t_node = head;
 	while (t_node != NULL) {
 		head = head->next;
@@ -22,7 +26,8 @@ PQueue::~PQueue() {
 	}
 }
 
-void PQueue::add(int x) {
+void PQueue::add(unsigned int x)
+{
 	Node *n_node = new Node(x);
 	if (n == 0) {head = n_node;}
 
@@ -37,8 +42,9 @@ void PQueue::add(int x) {
 	n++;
 }
 
-int PQueue::deleteMin() {
-	if (n == 0) {return NULL;}
+int PQueue::deleteMin()
+{
+	if (n == 0) {return -1;}
 
 	Node *t_node = head;
 	int t_data = head->data;
@@ -49,6 +55,7 @@ int PQueue::deleteMin() {
 	return t_data;
 }
 
-int PQueue::size() {
+int PQueue::size()
+{
 	return n;
 }

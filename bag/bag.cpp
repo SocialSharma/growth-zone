@@ -6,26 +6,21 @@
  *     Author: Abhi Sharma
  */
 
-/*
- * TWO BIG ISSUES RIGHT NOW:
- * 1. How to return NULL values? boost::optional DONE
- * 2. How to put pair in unordered set? Hash function DONE
- *
- * ONE SMALL ISSUE
- * 1. Generic typing/template everything
- */
+// TODO: raise if anything but positive numbers supplied
 
 #include "bag.h"
 #include <iostream>
 
 using namespace std;
 
-Bag::Bag() {
+Bag::Bag()
+{
 	f_value = -1;
 	f_count = -1;
 }
 
-void Bag::debug_out() {
+void Bag::debug_out()
+{
 	cout << "\n";
 	cout << "***My bag contains: ";
 	for (auto it = myset.begin(); it != myset.end(); ++it) {
@@ -92,7 +87,7 @@ vector<int> Bag::findAll(int elem)
 
 }
 
-bool Bag::add(int elem)
+bool Bag::add(unsigned int elem)
 {
 	// check to see if an element is already a part of the set, add
 	// (element, 1) it if it isn't, and increment its value if it is

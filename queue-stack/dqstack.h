@@ -19,7 +19,7 @@ public:
 	DQStack();
 	virtual ~DQStack();
 
-	void push(int x);
+	void push(unsigned int x);
 	int pop();
 
 protected:

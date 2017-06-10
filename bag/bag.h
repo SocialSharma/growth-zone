@@ -21,7 +21,7 @@ class Bag
 public:
 	Bag();
 
-	bool add(int elem);
+	bool add(unsigned int elem);
 	int remove(int elem);
 	int find(int elem);
 	vector<int> findAll(int elem);

@@ -19,7 +19,7 @@ public:
 	PQueue();
 	virtual ~PQueue();
 
-	void add(int x);
+	void add(unsigned int x);
 	int deleteMin();
 	int size();
 

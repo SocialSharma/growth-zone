@@ -8,6 +8,8 @@
 
 #include "dqstack.h"
 
+//TODO: raise error if anything but positive numbers are submitted
+
 DQStack::DQStack()
 {
 	queue alpha(1), beta(1);
@@ -53,7 +55,7 @@ void DQStack::resize(queue nofit)
 	}
 }
 
-void DQStack::push(int x)
+void DQStack::push(unsigned int x)
 {
 	// if the number of elements is equal to the size of alpha,
 	// resize alpha and beta, then push number into whichever queue has items
