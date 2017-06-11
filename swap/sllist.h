@@ -19,8 +19,8 @@ public:
 	SLList();
 	virtual ~SLList();
 
-	void add(unsigned int x);
-	int remove(int i = 0);
+	void push(unsigned int x);
+	int pop();
 	void swap(int i, char flag = 'n'); // swap with [p]revious or [n]ext
 
 protected:

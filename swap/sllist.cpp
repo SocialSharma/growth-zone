@@ -24,7 +24,7 @@ SLList::~SLList()
 	}
 }
 
-void SLList::add(unsigned int x)
+void SLList::push(unsigned int x)
 {
 	Node *n_node = new Node(x);
 	n_node->next = head;
@@ -32,40 +32,21 @@ void SLList::add(unsigned int x)
 	n++;
 }
 
-int SLList::remove(int i)
+int SLList::pop()
 {
-	if ((i > n - 1) || (i < 0)) {
-		throw "Illegal remove call! Index out of bounds.";
-	}
+	if (n == 0) {return -1;}
 
-	if (head == NULL) {return -1;}
-
-	if (i == 0) {
-		Node *temp = head;
-		int data = temp->data;
-		head = temp->next;
-		delete temp;
-
-		return data;
-	}
-
-	Node *tracker = head;
-	for (int it = 0; it < i - 1; ++it) {
-		tracker = tracker->next;
-	}
-
-	Node *temp = tracker->next;
+	Node *temp = head;
 	int data = temp->data;
-	tracker->next = tracker->next->next;
+	head = temp->next;
 	delete temp;
-	n--;
 
 	return data;
 }
 
 void SLList::swap(int i, char flag)
 {
-	if (n < 3) {
+	if (n < 2) {
 		throw "Illegal swap call! Less than two items in list.";
 	}
 
@@ -93,7 +74,7 @@ void SLList::swap(int i, char flag)
 		temp->next = temp->next->next;
 		tracker->next->next = temp;
 	} else {
-		throw "Invalid flag! Select either [n]ext or [p]revious.";
+		throw "Invalid swap call! Select either [n]ext or [p]revious.";
 	}
 }
 
